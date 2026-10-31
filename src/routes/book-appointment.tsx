@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronRight, Menu, Phone, Mail, MapPin, Smile, Star, Heart, Quote } from "lucide-react";
+import { BookingModal } from "@/components/pages/BookingModal";
 
 import heroImg from "@/assets/book-hero.jpg";
 import renuImg from "@/assets/renu-book.jpg";
@@ -78,8 +80,11 @@ function WhatsAppPill({ className = "" }: { className?: string }) {
 }
 
 function BookAppointment() {
+  const [bookingOpen, setBookingOpen] = useState(false);
+
   return (
     <div className="bg-cream text-royal">
+      <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
       {/* NAV */}
       <header className="sticky top-0 z-30 bg-card/95 backdrop-blur">
         <div className="mx-auto flex max-w-[1300px] items-center justify-between gap-4 px-5 py-3 lg:px-10">
@@ -97,9 +102,9 @@ function BookAppointment() {
               ),
             )}
           </nav>
-          <Link to="/book-appointment" className="btn btn-plum hidden !rounded-sm lg:inline-flex">
+          <button type="button" onClick={() => setBookingOpen(true)} className="btn btn-plum hidden !rounded-sm lg:inline-flex">
             Book Appointment
-          </Link>
+          </button>
           <button type="button" aria-label="Menu" className="text-royal lg:hidden">
             <Menu className="h-6 w-6" strokeWidth={1.4} />
           </button>
@@ -139,9 +144,9 @@ function BookAppointment() {
               A luxury wellness and skin therapy sanctuary dedicated to your inner peace and outer glow.
             </p>
             <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
-              <Link to="/book-appointment" className="btn btn-plum w-56 !rounded-sm sm:w-auto">
+              <button type="button" onClick={() => setBookingOpen(true)} className="btn btn-plum w-56 !rounded-sm sm:w-auto">
                 Book Appointment
-              </Link>
+              </button>
               <button type="button" className="btn btn-outline-plum w-56 !rounded-sm sm:w-auto">
                 Explore Treatments
               </button>

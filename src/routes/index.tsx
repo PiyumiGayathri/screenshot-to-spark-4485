@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { BookingModal } from "@/components/pages/BookingModal";
 import {
   ChevronsDown,
   ChevronLeft,
@@ -100,8 +102,11 @@ function Eyebrow({ children, tone = "dark" }: { children: string; tone?: "dark" 
 }
 
 function Home() {
+  const [bookingOpen, setBookingOpen] = useState(false);
+
   return (
     <div className="bg-cream">
+      <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
       {/* HERO */}
       <section className="relative isolate overflow-hidden text-ivory">
         <img
@@ -129,9 +134,9 @@ function Home() {
             )}
           </nav>
           <div className="flex items-center gap-5">
-            <Link to="/book-appointment" className="btn btn-gold hidden sm:inline-flex">
+            <button type="button" onClick={() => setBookingOpen(true)} className="btn btn-gold hidden sm:inline-flex">
               Book Appointment
-            </Link>
+            </button>
             <button type="button" aria-label="Menu" className="text-ivory/90 hover:text-gold">
               <Menu className="h-5 w-5" strokeWidth={1.4} />
             </button>
@@ -317,8 +322,8 @@ function Home() {
               <br />
               and inner peace begins here.
             </p>
-            <button type="button" className="btn btn-gold mt-4 !rounded-md">
-              Book Now on WhatsApp <WhatsAppIcon className="h-4 w-4" />
+            <button type="button" onClick={() => setBookingOpen(true)} className="btn btn-gold mt-4 !rounded-md">
+              Book Now <WhatsAppIcon className="h-4 w-4" />
             </button>
           </div>
         </div>
