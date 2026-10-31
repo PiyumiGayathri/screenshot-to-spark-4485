@@ -67,7 +67,7 @@ export function Logo({
           <span className="h-px w-4 bg-current opacity-70" />
         </span>
         {tagline && (
-          <span className="mt-1 text-[0.5rem] tracking-[0.18em] uppercase opacity-80 font-sans">
+          <span className="mt-1 whitespace-nowrap text-[0.5rem] tracking-[0.18em] uppercase opacity-80 font-sans">
             Healing Hands • Peaceful Minds
           </span>
         )}
